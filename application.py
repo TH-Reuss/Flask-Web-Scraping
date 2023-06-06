@@ -33,18 +33,12 @@ async def getProducts(product_name):
 
         return jsonify(serialized_products)
 
-    except:
-        return (
-            jsonify(
-                {
-                    "message": "Este producto en especifico presenta problemas, por favor intenta con otro. Mientras mas específica la busqueda mejor.",
-                    "status": 500,
-                }
-            ),
-            500,
-        )
+    except Exception:
+        response = jsonify({"message": "Este producto en especifico presenta problemas, por favor intenta con otro. Mientras mas específica la busqueda mejor.","status": 500,})
+        response.headers.add('Content-Type', 'application/json')
+        return (response, 500)
 
 
 if __name__ == "__main__":
-    application.debug = True
+    application.debug = False
     application.run()

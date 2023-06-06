@@ -35,7 +35,7 @@ class FalabellaScrapper:
 
         try:
             self.quantity_pages = int(pagination[-1:][0].get_text())
-        except:
+        except Exception:
             self.quantity_pages = 1
 
         self.quantity_pages = min(self.quantity_pages, self.limit_quantity_page)
