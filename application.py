@@ -24,8 +24,9 @@ async def getProducts(product_name):
         falabella = FalabellaScrapper(product_name)
         await falabella.search_products_concurrent()
         serialized_products = [product.__dict__ for product in falabella.products]
+
         for product in serialized_products:
-            product['uuid'] = str(uuid.uuid4())
+            product["id"] = str(uuid.uuid4())
 
         if len(serialized_products) == 0:
             return (
